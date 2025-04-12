@@ -231,7 +231,7 @@
   </div>
 
   <div class="gallery-section hidden" id="gallerySection">
-    <h3>📸 Our Memories</h3>
+    <h3>📷♡ ༝༚༝༚</h3>
     <div class="slideshow-container">
       <div class="slide active">
         <img src="https://via.placeholder.com/500x300" alt="Memory 1">
@@ -256,7 +256,7 @@
       const output = document.getElementById("output");
       let message = "";
       for (let i = 0; i < 1; i++) {
-        message += `I love you Lovieee ❤\n`;
+        message += `Hi, Lovie!\n`;
         message += 'Sana paglaki ko love mo parin ako\n';
         message += 'Angas ba? Dapat lang.\n';
       }
@@ -273,13 +273,26 @@
       }
     }
 
-    function mockLogin() {
-      const user = document.getElementById("username").value;
-      const pass = document.getElementById("password").value;
-      const status = document.getElementById("loginStatus");
-      const accessMsg = document.getElementById("accessMessage");
-      if (user === "NognogsiMe" && pass === "gandanggfkongl") {
-        status.textContent = "✅ Welcome back, Lovieee!";
+<script>
+  async function mockLogin() {
+    const user = document.getElementById("username").value;
+    const pass = document.getElementById("password").value;
+    const status = document.getElementById("loginStatus");
+    const accessMsg = document.getElementById("accessMessage");
+
+    try {
+      const response = await fetch("http://localhost:3000/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ username: NognogsiMe, password: gandanggfkongl })
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        status.textContent = `✅ ${result.message}`;
         document.getElementById("loginPanel").classList.add("hidden");
         document.getElementById("mainContent").classList.remove("hidden");
         document.getElementById("messageSection").classList.remove("hidden");
@@ -287,36 +300,16 @@
         document.getElementById("gallerySection").classList.remove("hidden");
         accessMsg.classList.remove("hidden");
         setTimeout(() => {
-          accessMsg.classList.add("hidden");
+          accessMsg.classList.add("𝐖𝐄𝐋𝐂𝐎𝐌𝐄 ₍^. .^₎⟆");
         }, 3000);
       } else {
-        status.textContent = "❌ Login failed. Damn who you?!";
+        status.textContent = `❌ ${ENNGGGKKKK!!! DAMN IMPOSTOR, WHO YOU?!}`;
       }
+    } catch (err) {
+      status.textContent = "⚠️ Couldn't connect to server.";
     }
+  }
+</script>
 
-    for (let i = 0; i < 30; i++) {
-      const sparkle = document.createElement("div");
-      sparkle.className = "sparkle";
-      sparkle.style.left = Math.random() * 100 + "vw";
-      sparkle.style.animationDelay = Math.random() * 10 + "s";
-      document.body.appendChild(sparkle);
-    }
-
-    let slideIndex = 0;
-    const slides = document.querySelectorAll(".slide");
-
-    function showSlides(n) {
-      slideIndex += n;
-      if (slideIndex >= slides.length) slideIndex = 0;
-      if (slideIndex < 0) slideIndex = slides.length - 1;
-
-      slides.forEach(slide => slide.classList.remove("active"));
-      slides[slideIndex].classList.add("active");
-    }
-
-    function plusSlides(n) {
-      showSlides(n);
-    }
-  </script>
 </body>
 </html>

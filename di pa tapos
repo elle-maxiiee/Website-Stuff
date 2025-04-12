@@ -126,17 +126,57 @@
       100% { opacity: 0; }
     }
 
-    .gallery-images {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-      gap: 10px;
-      margin-top: 1rem;
+    .slideshow-container {
+      position: relative;
+      max-width: 800px;
+      margin: auto;
+      overflow: hidden;
+      border-radius: 12px;
     }
 
-    .gallery-images img {
+    .slide {
+      display: none;
+      animation: fade 0.8s;
+    }
+
+    .slide img {
       width: 100%;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      border-radius: 12px;
+    }
+
+    .active {
+      display: block;
+    }
+
+    @keyframes fade {
+      from { opacity: 0.4; }
+      to { opacity: 1; }
+    }
+
+    .prev, .next {
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      width: auto;
+      padding: 12px;
+      margin-top: -22px;
+      color: #444;
+      font-weight: bold;
+      font-size: 18px;
+      border-radius: 0 6px 6px 0;
+      user-select: none;
+      background-color: rgba(255, 255, 255, 0.8);
+      border: none;
+      transition: background 0.3s;
+    }
+
+    .next {
+      right: 0;
+      border-radius: 6px 0 0 6px;
+    }
+
+    .prev:hover, .next:hover {
+      background-color: rgba(168, 213, 186, 0.9);
     }
   </style>
 </head>
@@ -192,10 +232,18 @@
 
   <div class="gallery-section hidden" id="gallerySection">
     <h3>📸 Our Memories</h3>
-    <div class="gallery-images">
-      <img src="https://via.placeholder.com/150" alt="Memory 1">
-      <img src="https://via.placeholder.com/150" alt="Memory 2">
-      <img src="https://via.placeholder.com/150" alt="Memory 3">
+    <div class="slideshow-container">
+      <div class="slide active">
+        <img src="https://via.placeholder.com/500x300" alt="Memory 1">
+      </div>
+      <div class="slide">
+        <img src="https://via.placeholder.com/500x300/aaa" alt="Memory 2">
+      </div>
+      <div class="slide">
+        <img src="https://via.placeholder.com/500x300/ddd" alt="Memory 3">
+      </div>
+      <button class="prev" onclick="plusSlides(-1)">&#10094;</button>
+      <button class="next" onclick="plusSlides(1)">&#10095;</button>
     </div>
   </div>
 
@@ -252,6 +300,22 @@
       sparkle.style.left = Math.random() * 100 + "vw";
       sparkle.style.animationDelay = Math.random() * 10 + "s";
       document.body.appendChild(sparkle);
+    }
+
+    let slideIndex = 0;
+    const slides = document.querySelectorAll(".slide");
+
+    function showSlides(n) {
+      slideIndex += n;
+      if (slideIndex >= slides.length) slideIndex = 0;
+      if (slideIndex < 0) slideIndex = slides.length - 1;
+
+      slides.forEach(slide => slide.classList.remove("active"));
+      slides[slideIndex].classList.add("active");
+    }
+
+    function plusSlides(n) {
+      showSlides(n);
     }
   </script>
 </body>

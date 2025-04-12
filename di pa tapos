@@ -20,7 +20,7 @@
       overflow-x: hidden;
     }
 
-    .card, .interactive, .login {
+    .card, .interactive, .login, .spotify-section, .gallery-section {
       background-color: #fff8ef;
       border-radius: 12px;
       box-shadow: 0 4px 20px rgba(100, 100, 100, 0.1);
@@ -107,17 +107,36 @@
     }
 
     @keyframes floatSparkles {
-      0% {
-        transform: translateY(100vh) translateX(0);
-        opacity: 0;
-      }
-      50% {
-        opacity: 0.8;
-      }
-      100% {
-        transform: translateY(-10vh) translateX(30px);
-        opacity: 0;
-      }
+      0% { transform: translateY(100vh) translateX(0); opacity: 0; }
+      50% { opacity: 0.8; }
+      100% { transform: translateY(-10vh) translateX(30px); opacity: 0; }
+    }
+
+    .access-granted {
+      font-size: 1.2rem;
+      color: #6a9955;
+      animation: fadeInOut 3s ease-in-out;
+      margin-top: 1rem;
+    }
+
+    @keyframes fadeInOut {
+      0% { opacity: 0; }
+      25% { opacity: 1; }
+      75% { opacity: 1; }
+      100% { opacity: 0; }
+    }
+
+    .gallery-images {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 10px;
+      margin-top: 1rem;
+    }
+
+    .gallery-images img {
+      width: 100%;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
   </style>
 </head>
@@ -135,6 +154,8 @@
     <button onclick="mockLogin()">Log in</button>
     <p id="loginStatus"></p>
   </div>
+
+  <div class="access-granted hidden" id="accessMessage">✅ Access granted, Lovie𖹭.ᐟ</div>
 
   <div class="card hidden" id="mainContent">
     <pre>
@@ -162,6 +183,20 @@
     </div>
     <button onclick="sendLoveNote()">💌 Send</button>
     <p id="noteOutput"></p>
+  </div>
+
+  <div class="spotify-section hidden" id="spotifySection">
+    <h3>🎵 Our Song</h3>
+    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/1imKjqM7PNPfezBK6FTyAO?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+  </div>
+
+  <div class="gallery-section hidden" id="gallerySection">
+    <h3>📸 Our Memories</h3>
+    <div class="gallery-images">
+      <img src="https://via.placeholder.com/150" alt="Memory 1">
+      <img src="https://via.placeholder.com/150" alt="Memory 2">
+      <img src="https://via.placeholder.com/150" alt="Memory 3">
+    </div>
   </div>
 
   <footer>
@@ -194,17 +229,23 @@
       const user = document.getElementById("username").value;
       const pass = document.getElementById("password").value;
       const status = document.getElementById("loginStatus");
+      const accessMsg = document.getElementById("accessMessage");
       if (user === "NognogsiMe" && pass === "gandanggfkongl") {
         status.textContent = "✅ Welcome back, Lovieee!";
         document.getElementById("loginPanel").classList.add("hidden");
         document.getElementById("mainContent").classList.remove("hidden");
         document.getElementById("messageSection").classList.remove("hidden");
+        document.getElementById("spotifySection").classList.remove("hidden");
+        document.getElementById("gallerySection").classList.remove("hidden");
+        accessMsg.classList.remove("hidden");
+        setTimeout(() => {
+          accessMsg.classList.add("hidden");
+        }, 3000);
       } else {
         status.textContent = "❌ Login failed. Damn who you?!";
       }
     }
 
-    // Add sparkles
     for (let i = 0; i < 30; i++) {
       const sparkle = document.createElement("div");
       sparkle.className = "sparkle";

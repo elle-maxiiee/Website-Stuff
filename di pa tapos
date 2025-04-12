@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Exlusive For Orlando</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(to bottom right, #fdf6e3, #fefbe9);
+      color: #444;
+      font-family: 'Fira Code', monospace;
+      padding: 2rem;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    .card, .interactive, .login {
+      background-color: #fff8ef;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(100, 100, 100, 0.1);
+      padding: 2rem;
+      max-width: 800px;
+      width: 100%;
+      z-index: 1;
+      margin-bottom: 2rem;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .comment { color: #6a9955; }
+    .keyword { color: #569cd6; }
+    .string { color: #ce9178; }
+    .class-name { color: #4ec9b0; }
+    .heart {
+      color: #ff6b81;
+      animation: pulse 1.2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+    }
+
+    button {
+      background-color: #a8d5ba;
+      color: #2f4f4f;
+      border: none;
+      padding: 10px 20px;
+      font-family: 'Fira Code', monospace;
+      font-size: 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 1rem;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #93c9aa;
+    }
+
+    #output {
+      margin-top: 1rem;
+      white-space: pre-wrap;
+      color: #ce9178;
+    }
+
+    footer {
+      margin-top: auto;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #888;
+      padding: 2rem 1rem 1rem;
+      z-index: 1;
+    }
+
+    .input-field {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 1rem;
+    }
+
+    input[type="text"], input[type="password"] {
+      font-family: 'Fira Code', monospace;
+      padding: 10px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      background-color: #f9f5ec;
+    }
+
+    .sparkle {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background-color: #a8d5ba;
+      border-radius: 50%;
+      animation: floatSparkles 10s infinite ease-in-out;
+      opacity: 0.6;
+    }
+
+    @keyframes floatSparkles {
+      0% {
+        transform: translateY(100vh) translateX(0);
+        opacity: 0;
+      }
+      50% {
+        opacity: 0.8;
+      }
+      100% {
+        transform: translateY(-10vh) translateX(30px);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="login" id="loginPanel">
+    <h3>🔐 Log in to see the surprise</h3>
+    <div class="input-field">
+      <label for="username">Username</label>
+      <input type="text" id="username" placeholder="Enter username">
+    </div>
+    <div class="input-field">
+      <label for="password">Password</label>
+      <input type="password" id="password" placeholder="Enter password">
+    </div>
+    <button onclick="mockLogin()">Log in</button>
+    <p id="loginStatus"></p>
+  </div>
+
+  <div class="card hidden" id="mainContent">
+    <pre>
+<span class="comment">// A love program written just for you </span>
+<span class="keyword">public class</span> <span class="class-name">Boyfriend</span> {
+    <span class="keyword">String</span> name = <span class="string">"Lovieee"</span>;
+    <span class="keyword">boolean</span> isLoved = <span class="keyword">true</span>;
+
+    <span class="keyword">public void</span> loveYou() {
+        <span class="keyword">while</span> (isLoved) {
+            System.out.println(<span class="string">"I love you "</span> + name + <span class="string">" <span class='heart'>❤</span>"</span>);
+        }
+    }
+}
+    </pre>
+    <button onclick="runLoveCode()">▶️ Run </button>
+    <div id="output"></div>
+  </div>
+
+  <div class="interactive hidden" id="messageSection">
+    <h3>🌿 Leave a Message</h3>
+    <div class="input-field">
+      <label for="loveNote">Hi Orlando Lopez!</label>
+      <input type="text" id="loveNote" placeholder="Feedback bossing...">
+    </div>
+    <button onclick="sendLoveNote()">💌 Send</button>
+    <p id="noteOutput"></p>
+  </div>
+
+  <footer>
+    Made by Heart I Think -Elle
+  </footer>
+
+  <script>
+    function runLoveCode() {
+      const output = document.getElementById("output");
+      let message = "";
+      for (let i = 0; i < 1; i++) {
+        message += `I love you Lovieee ❤\n`;
+        message += 'Sana paglaki ko love mo parin ako\n';
+        message += 'Angas ba? Dapat lang.\n';
+      }
+      output.textContent = message;
+    }
+
+    function sendLoveNote() {
+      const note = document.getElementById("loveNote").value;
+      const noteOutput = document.getElementById("noteOutput");
+      if (note.trim()) {
+        noteOutput.textContent = `💬 You said: "${note}"`;
+      } else {
+        noteOutput.textContent = "Please enter a sweet message!";
+      }
+    }
+
+    function mockLogin() {
+      const user = document.getElementById("username").value;
+      const pass = document.getElementById("password").value;
+      const status = document.getElementById("loginStatus");
+      if (user === "NognogsiMe" && pass === "gandanggfkongl") {
+        status.textContent = "✅ Welcome back, Lovieee!";
+        document.getElementById("loginPanel").classList.add("hidden");
+        document.getElementById("mainContent").classList.remove("hidden");
+        document.getElementById("messageSection").classList.remove("hidden");
+      } else {
+        status.textContent = "❌ Login failed. Damn who you?!";
+      }
+    }
+
+    // Add sparkles
+    for (let i = 0; i < 30; i++) {
+      const sparkle = document.createElement("div");
+      sparkle.className = "sparkle";
+      sparkle.style.left = Math.random() * 100 + "vw";
+      sparkle.style.animationDelay = Math.random() * 10 + "s";
+      document.body.appendChild(sparkle);
+    }
+  </script>
+</body>
+</html>

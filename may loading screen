@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Exclusive For Orlando</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(to bottom right, #fdf6e3, #fefbe9);
+      color: #444;
+      font-family: 'Fira Code', monospace;
+      padding: 2rem;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    .card, .interactive, .login, .spotify-section, .gallery-section {
+      background-color: #fff8ef;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(100, 100, 100, 0.1);
+      padding: 2rem;
+      max-width: 800px;
+      width: 100%;
+      z-index: 1;
+      margin-bottom: 2rem;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .comment { color: #6a9955; }
+    .keyword { color: #569cd6; }
+    .string { color: #ce9178; }
+    .class-name { color: #4ec9b0; }
+    .heart {
+      color: #ff6b81;
+      animation: pulse 1.2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+    }
+
+    button {
+      background-color: #a8d5ba;
+      color: #2f4f4f;
+      border: none;
+      padding: 10px 20px;
+      font-family: 'Fira Code', monospace;
+      font-size: 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 1rem;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #93c9aa;
+    }
+
+    #output {
+      margin-top: 1rem;
+      white-space: pre-wrap;
+      color: #ce9178;
+    }
+
+    footer {
+      margin-top: auto;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #888;
+      padding: 2rem 1rem 1rem;
+      z-index: 1;
+    }
+
+    .input-field {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 1rem;
+    }
+
+    input[type="text"], input[type="password"] {
+      font-family: 'Fira Code', monospace;
+      padding: 10px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      background-color: #f9f5ec;
+    }
+
+    .access-granted {
+      font-size: 1.2rem;
+      color: #6a9955;
+      animation: fadeInOut 3s ease-in-out;
+      margin-top: 1rem;
+    }
+
+    @keyframes fadeInOut {
+      0% { opacity: 0; }
+      25% { opacity: 1; }
+      75% { opacity: 1; }
+      100% { opacity: 0; }
+    }
+
+    .slideshow-container {
+      position: relative;
+      max-width: 800px;
+      margin: auto;
+      overflow: hidden;
+      border-radius: 12px;
+    }
+
+    .slide {
+      display: none;
+      animation: fade 0.8s;
+    }
+
+    .slide img {
+      width: 100%;
+      border-radius: 12px;
+    }
+
+    .active {
+      display: block;
+    }
+
+    @keyframes fade {
+      from { opacity: 0.4; }
+      to { opacity: 1; }
+    }
+
+    .prev, .next {
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      width: auto;
+      padding: 12px;
+      margin-top: -22px;
+      color: #444;
+      font-weight: bold;
+      font-size: 18px;
+      border-radius: 0 6px 6px 0;
+      user-select: none;
+      background-color: rgba(255, 255, 255, 0.8);
+      border: none;
+      transition: background 0.3s;
+    }
+
+    .next {
+      right: 0;
+      border-radius: 6px 0 0 6px;
+    }
+
+    .prev:hover, .next:hover {
+      background-color: rgba(168, 213, 186, 0.9);
+    }
+
+    #loadingOverlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #fff8ef;
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      transition: opacity 0.3s ease;
+    }
+
+    .loading-content p {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+      font-family: 'Fira Code', monospace;
+      color: #444;
+    }
+
+    .heart-bounce {
+      font-size: 2rem;
+      color: #ff6b81;
+      animation: bounce 1s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+  </style>
+</head>
+<body>
+  <!-- Login, Main, Sections Here -->
+  <!-- ... (unchanged content) ... -->
+
+  <div id="loadingOverlay" class="hidden">
+    <div class="loading-content">
+      <p>Loading ngani kulit!!! </p>
+      <div class="heart-bounce">❤</div>
+    </div>
+  </div>
+
+  <footer>
+    Made by Heart I Think -Elle
+  </footer>
+
+  <script>
+    function runLoveCode() {
+      const output = document.getElementById("output");
+      let message = "";
+      for (let i = 0; i < 1; i++) {
+        message += `Hi, Lovie!\n`;
+        message += 'Sana paglaki ko love mo parin ako\n';
+        message += 'Angas ba? Dapat lang.\n';
+      }
+      output.textContent = message;
+    }
+
+    function sendLoveNote() {
+      const note = document.getElementById("loveNote").value;
+      const noteOutput = document.getElementById("noteOutput");
+      if (note.trim()) {
+        noteOutput.textContent = `💬 You said: "${note}"`;
+      } else {
+        noteOutput.textContent = "Please enter a sweet message!";
+      }
+    }
+
+    function mockLogin() {
+      const user = document.getElementById("username").value.trim();
+      const pass = document.getElementById("password").value.trim();
+      const status = document.getElementById("loginStatus");
+      const accessMsg = document.getElementById("accessMessage");
+      const loading = document.getElementById("loadingOverlay");
+
+      const correctUsername = "Orlando";
+      const correctPassword = "GandaNgGFKoNGL";
+
+      if (user === correctUsername && pass === correctPassword) {
+        loading.classList.remove("hidden");
+
+        setTimeout(() => {
+          loading.classList.add("hidden");
+          status.textContent = `✅ Welcome, ${user}!`;
+          document.getElementById("loginPanel").classList.add("hidden");
+          document.getElementById("mainContent").classList.remove("hidden");
+          document.getElementById("messageSection").classList.remove("hidden");
+          document.getElementById("spotifySection").classList.remove("hidden");
+          document.getElementById("gallerySection").classList.remove("hidden");
+          accessMsg.classList.remove("hidden");
+
+          setTimeout(() => {
+            accessMsg.classList.add("hidden");
+          }, 3000);
+        }, 2000);
+      } else {
+        status.textContent = "❌ ENNGGGKKKK!!! DAMN IMPOSTOR, WHO YOU?!";
+      }
+    }
+
+    let currentSlide = 0;
+    const slides = document.querySelectorAll(".slide");
+
+    function showSlide(index) {
+      slides.forEach((slide, i) => {
+        slide.classList.remove("active");
+        if (i === index) {
+          slide.classList.add("active");
+        }
+      });
+    }
+
+    function plusSlides(n) {
+      currentSlide += n;
+      if (currentSlide >= slides.length) currentSlide = 0;
+      if (currentSlide < 0) currentSlide = slides.length - 1;
+      showSlide(currentSlide);
+    }
+  </script>
+</body>
+</html>
